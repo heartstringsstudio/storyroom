@@ -1,0 +1,435 @@
+/* ==========================================================================
+   The Story Room — Heartstrings Studio
+   Palette: rose → blush → soft gold on cream. Mobile-first.
+   ========================================================================== */
+
+:root {
+  --rose: #b34760;
+  --rose-deep: #8f3049;
+  --blush: #e9b8b3;
+  --gold: #b8862e;
+  --gold-soft: #e8cf9d;
+  --cream: #fbf6ee;
+  --card: #fffdf9;
+  --ink: #3f3531;
+  --ink-soft: #6b5d55;
+  --line: #e8d9cb;
+  --grad: linear-gradient(120deg, #b34760 0%, #d98a86 52%, #c99a3f 100%);
+  --shadow: 0 1px 2px rgba(63, 53, 49, 0.06), 0 8px 28px rgba(63, 53, 49, 0.08);
+  --radius: 14px;
+  --ease: cubic-bezier(0.25, 0.6, 0.3, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Header ------------------------------------------------------------- */
+
+.site-header {
+  text-align: center;
+  padding: 1.75rem 1rem 0.25rem;
+}
+
+.site-header::after {
+  content: "";
+  display: block;
+  width: 3.25rem;
+  height: 3px;
+  border-radius: 3px;
+  margin: 0.9rem auto 0;
+  background: var(--grad);
+}
+
+.wordmark {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  font-size: 1.65rem;
+  letter-spacing: 0.06em;
+  margin: 0;
+  color: var(--rose-deep);
+}
+
+.room-name {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* --- Layout ------------------------------------------------------------- */
+
+.app {
+  flex: 1;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 1.25rem 1.25rem 2.5rem;
+}
+
+.screen {
+  animation: screen-in 420ms var(--ease) both;
+}
+
+@keyframes screen-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+h1, h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: 2.15rem; }
+h2 { font-size: 1.75rem; }
+
+p { margin: 0 0 1rem; }
+
+a { color: var(--rose-deep); }
+
+.soft { color: var(--ink-soft); }
+
+.sub-prompt {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin: -0.35rem 0 1.15rem;
+}
+
+/* --- Buttons ------------------------------------------------------------ */
+
+.btn {
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  color: #fff;
+  background: var(--rose-deep);
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 2.1rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: background 200ms var(--ease), transform 200ms var(--ease);
+}
+
+.btn:hover { background: var(--rose); }
+.btn:active { transform: scale(0.98); }
+
+.btn-quiet {
+  display: inline-block;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.85rem 1.6rem;
+  cursor: pointer;
+  min-height: 48px;
+  transition: border-color 200ms var(--ease), color 200ms var(--ease);
+}
+
+.btn-quiet:hover { border-color: var(--ink-soft); color: var(--ink); }
+
+.link-btn {
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  padding: 0.5rem 0.25rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+}
+
+.link-btn:hover { color: var(--rose-deep); }
+
+:focus-visible {
+  outline: 2.5px solid var(--rose-deep);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.btn:focus-visible, .btn-quiet:focus-visible { border-radius: 999px; }
+
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+  flex-wrap: wrap;
+}
+
+.nav-row .spacer { flex: 1; }
+
+/* --- Welcome ------------------------------------------------------------ */
+
+.welcome {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.welcome h1 { font-size: 2.4rem; }
+
+.welcome p {
+  max-width: 28rem;
+  margin: 0 auto 1.75rem;
+  color: var(--ink-soft);
+}
+
+/* --- Occasion cards ------------------------------------------------------ */
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  margin-top: 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 560px) {
+  .cards { grid-template-columns: 1fr 1fr; }
+}
+
+.card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.05rem 1.1rem;
+  cursor: pointer;
+  transition: transform 250ms var(--ease), border-color 250ms var(--ease);
+}
+
+.card:hover { transform: translateY(-2px); border-color: var(--blush); }
+
+.card svg {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  margin-top: 0.15rem;
+  stroke: var(--rose);
+  fill: none;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.card strong {
+  display: block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.card span {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* --- Progress dots -------------------------------------------------------- */
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 2rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+  transition: background 300ms var(--ease), transform 300ms var(--ease);
+}
+
+.dot.done { background: var(--blush); }
+
+.dot.current {
+  background: var(--grad);
+  transform: scale(1.35);
+}
+
+/* --- Question screens ----------------------------------------------------- */
+
+.favorite-flag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 0.5rem;
+}
+
+.favorite-flag svg {
+  width: 14px;
+  height: 14px;
+  fill: var(--rose);
+}
+
+textarea, input[type="text"], input[type="email"] {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.9rem 1rem;
+  transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+
+textarea {
+  min-height: 10.5rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+textarea:focus, input:focus {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px rgba(179, 71, 96, 0.14);
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin: 1.1rem 0 0.35rem;
+}
+
+label .optional {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.field-note {
+  color: var(--rose-deep);
+  font-size: 0.92rem;
+  margin: 0.5rem 0 0;
+}
+
+/* --- Review --------------------------------------------------------------- */
+
+.review-section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 0.8rem;
+}
+
+.review-section h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.3rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.review-section p {
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--ink-soft);
+}
+
+.review-section .link-btn { flex: none; padding: 0 0.1rem; }
+
+.presend {
+  margin: 1.5rem 0 0.35rem;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.pricing {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+.error-box {
+  background: #fdf0ec;
+  border: 1px solid #eac3b8;
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  margin: 1.25rem 0;
+}
+
+.error-box p { margin: 0 0 0.75rem; }
+
+/* --- Confirmation ---------------------------------------------------------- */
+
+.done-screen {
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.done-screen .heart-mark {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1rem;
+  fill: none;
+  stroke: var(--rose);
+  stroke-width: 1.5;
+}
+
+/* --- Footer ----------------------------------------------------------------- */
+
+.site-footer {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  padding: 1.5rem 1.25rem 2rem;
+  border-top: 1px solid var(--line);
+}
+
+.footer-sep { margin: 0 0.4rem; }
+
+/* --- Reduced motion ----------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
