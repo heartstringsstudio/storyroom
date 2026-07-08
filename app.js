@@ -42,7 +42,7 @@ var OCCASIONS = {
 
   memorial: {
     label: 'Memorial',
-    desc: 'Honoring someone who has passed',
+    desc: 'Honoring the memory of someone who has passed',
     icon: 'candle',
     presend: 'We’ll read every word with care. Memorial songs are always delivered within 24 hours, at no extra cost.',
     doneTitle: 'Your story is in careful hands.',
@@ -111,7 +111,7 @@ var OCCASIONS = {
 
   celebration: {
     label: 'Celebration of Life',
-    desc: 'A joyful remembering',
+    desc: 'A joyful remembering of a life well lived',
     icon: 'sun',
     presend: 'We’ll read every word with care and reply within a day.',
     doneTitle: 'Your story made it safely.',
@@ -180,7 +180,7 @@ var OCCASIONS = {
 
   wedding: {
     label: 'Wedding & Anniversary',
-    desc: 'A love story in a song',
+    desc: 'A love story, told the way only a song can',
     icon: 'rings',
     presend: 'We’ll read every word with care and reply within a day.',
     doneTitle: 'Your story made it safely.',
@@ -248,7 +248,7 @@ var OCCASIONS = {
 
   milestone: {
     label: 'Milestone',
-    desc: 'Birthdays, retirements, graduations',
+    desc: 'Birthdays, retirements, graduations and more',
     icon: 'flag',
     presend: 'We’ll read every word with care and reply within a day.',
     doneTitle: 'Your story made it safely.',
@@ -382,19 +382,19 @@ var OCCASIONS = {
     ]
   },
 
-  holiday: {
-    label: 'Holiday',
-    desc: 'A song for the season',
-    icon: 'star',
+  justbecause: {
+    label: 'Just Because / Other',
+    desc: 'No occasion needed — every story fits here',
+    icon: 'note',
     presend: 'We’ll read every word with care and reply within a day.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you — consider the season officially in progress. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you — the best songs often arrive for no occasion at all. We’ll read every word with care and reply within a day.',
     questions: [
       {
         id: 'about',
         label: 'WHO THE SONG IS ABOUT',
-        q: 'Who — or whose family — is this song for?',
-        sub: 'A name, or a whole houseful of them.',
+        q: 'Who is this song about?',
+        sub: 'Their name, and who they are to you.',
         essential: true
       },
       {
@@ -407,33 +407,33 @@ var OCCASIONS = {
       {
         id: 'moment',
         label: 'A MOMENT / A PLACE',
-        q: 'If we could see one holiday moment at your place, what would we see?',
-        sub: 'The kitchen at full steam, snow on the ridge, the same argument about the thermostat.'
+        q: 'If we could see one moment with them, what would we see?',
+        sub: 'Put us there — the porch swing, the long drive, the kitchen at midnight.'
       },
       {
         id: 'words',
         label: 'THEIR WORDS / UNSAID WORDS',
-        q: 'Is there something that gets said every year — a grace, a toast, a running joke?',
-        sub: 'The line everyone waits for. That’s the one we want.',
+        q: 'Is there something they always say — or something you’ve never quite said to them?',
+        sub: 'It’s okay if this is just a fragment. Fragments are where songs begin.',
         heart: true
       },
       {
         id: 'details',
         label: 'ONLY-THEM DETAILS',
-        q: 'What makes your family’s season yours alone?',
-        sub: 'The recipe nobody writes down. The decorations that come out in a certain order, or else.'
+        q: 'What makes them only them?',
+        sub: 'Habits, objects, quirks. The little things nobody else would think to mention.'
       },
       {
         id: 'feeling',
         label: 'THE FEELING IT SHOULD LEAVE',
-        q: 'When this song ends, what should the season feel like?',
-        sub: 'Warm, funny, homesick in the good way — you tell us.'
+        q: 'When this song ends, what should it leave behind?',
+        sub: 'Warm, funny, tearful in the good way — you tell us.'
       },
       {
-        id: 'season',
-        label: 'WHAT THE SEASON MEANS',
-        q: 'What does the season mean in your family?',
-        sub: 'A tradition, a table, a memory that comes back every year.'
+        id: 'reason',
+        label: 'WHY THIS SONG, WHY NOW',
+        q: 'There’s no occasion box for this one — so what moved you to do it?',
+        sub: 'A holiday, an apology, a thank-you, or truly just because. Every reason is a good one.'
       },
       {
         id: 'anything',
@@ -446,7 +446,7 @@ var OCCASIONS = {
 };
 
 /* Order the occasion cards appear in. */
-var OCCASION_ORDER = ['memorial', 'celebration', 'wedding', 'milestone', 'tribute', 'holiday'];
+var OCCASION_ORDER = ['memorial', 'celebration', 'wedding', 'milestone', 'tribute', 'justbecause'];
 
 /* Simple line-art icons for the occasion cards. */
 var ICONS = {
@@ -455,7 +455,7 @@ var ICONS = {
   rings: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="14" r="5.5"/><circle cx="15" cy="10" r="5.5"/></svg>',
   flag: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4"/><path d="M6 4c4-2 8 2 12 0v9c-4 2-8-2-12 0"/></svg>',
   laurel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-6.5-4.2-8.7-8C1.8 9.3 3.3 6 6.4 6c1.8 0 3 1 4 2.3L12 10l1.6-1.7C14.6 7 15.8 6 17.6 6c3.1 0 4.6 3.3 3.1 6-2.2 3.8-8.7 8-8.7 8z"/></svg>',
-  star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.2 5.4 5.8.5-4.4 3.8 1.3 5.7L12 15.3l-4.9 3.1 1.3-5.7L4 8.9l5.8-.5z"/></svg>'
+  note: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v11"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="15" r="2.5"/></svg>'
 };
 
 var HEART_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.3C.3 8.6 2 5 5.5 5c2 0 3.4 1.1 4.2 2.3L12 10l2.3-2.7C15.1 6.1 16.5 5 18.5 5 22 5 23.7 8.6 22 11.7 19.5 16.1 12 21 12 21z"/></svg>';
