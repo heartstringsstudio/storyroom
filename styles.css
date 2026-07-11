@@ -424,6 +424,20 @@ label .optional {
 
 .footer-sep { margin: 0 0.4rem; }
 
+@media (max-width: 559px) {
+  .site-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  .footer-sep,
+  .footer-punctuation {
+    display: none;
+  }
+}
+
 /* --- Reduced motion ----------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
