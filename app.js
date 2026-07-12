@@ -44,9 +44,9 @@ var OCCASIONS = {
     label: 'Memorial',
     desc: 'Honoring the memory of someone who has passed',
     icon: 'candle',
-    presend: 'We’ll read every word with care. Memorial songs are always delivered within 24 hours, at no extra cost.',
+    presend: 'We’ll read every word with care and reply within a day. Most songs are delivered within 48–72 hours.',
     doneTitle: 'Your story is in careful hands.',
-    doneBody: 'Thank you for trusting us with them. We’ll read every word, and your song will be with you within 24 hours — that part is already taken care of.',
+    doneBody: 'Thank you for trusting us with them. We’ll read every word with care and reply within a day with the next steps.',
     questions: [
       {
         id: 'about',
@@ -97,7 +97,7 @@ var OCCASIONS = {
         id: 'event',
         label: 'SERVICE OR GATHERING',
         q: 'Is there a service or gathering this song is for?',
-        sub: 'If so, tell us when. Memorial songs are always delivered within 24 hours, at no extra cost — that worry is off your list.',
+        sub: 'If so, tell us when. Standard delivery is 48–72 hours, and rush delivery is available when the date is closer.',
         isEvent: true
       },
       {
@@ -543,8 +543,9 @@ function renderWelcome() {
     '<div class="welcome">' +
     '<h1>Every song starts with a story.<br>Tell us yours.</h1>' +
     '<p>No forms to fight with — just a few gentle questions, one at a time. ' +
-    'Take all the time you need. You can’t do this wrong.</p>' +
-    '<button class="btn" data-action="begin">Begin</button>' +
+    'Your answers go directly to Tim, who writes every Heartstrings song personally in Lumberport, West Virginia.</p>' +
+    '<span class="offer-note">$150 flat · 48–72 hours · one lyric revision</span>' +
+    '<button class="btn" data-action="begin">Share your story</button>' +
     '</div>';
 }
 
@@ -574,7 +575,7 @@ function dotsHtml() {
   for (var i = 0; i < total; i++) {
     out += '<span class="dot' + (i < current ? ' done' : i === current ? ' current' : '') + '"></span>';
   }
-  return out + '</div>';
+  return out + '</div><p class="progress-copy">Step ' + (current + 1) + ' of ' + total + '</p>';
 }
 
 function renderQuestion() {
@@ -655,9 +656,7 @@ function renderReview() {
     (state.contact.heard ? '\nHeard about us: ' + esc(state.contact.heard) : '') + '</p>' +
     '</section>';
 
-  var pricing = (state.occasion === 'memorial')
-    ? 'Every song is a flat $150, with an optional $100 commercial license. Your 24-hour delivery is included — always, at no cost.'
-    : 'Every song is a flat $150, with an optional $100 commercial license. Rush delivery is available as a $50 add-on.';
+  var pricing = 'Every song is $150 flat and includes one lyric revision, a personal keepsake page, MP3, lyric sheet, and custom album art. Commercial licensing is $100; rush delivery is $50 when needed.';
 
   var errorBox = state.sendError
     ? '<div class="error-box" role="alert">' +
@@ -674,6 +673,7 @@ function renderReview() {
     errorBox +
     '<p class="presend">' + esc(occ.presend) + '</p>' +
     '<p class="pricing">' + esc(pricing) + '</p>' +
+    '<p class="privacy-brief">Your story is sent securely to Heartstrings Studio through Formspree and is used only to create and discuss your custom song.</p>' +
     '<div class="nav-row">' +
     '<button class="btn-quiet" data-action="back">Back</button>' +
     '<span class="spacer"></span>' +
@@ -691,7 +691,7 @@ function renderDone() {
     '<h1>' + esc(occ.doneTitle) + '</h1>' +
     '<p class="soft">' + esc(occ.doneBody) + '</p>' +
     '<p class="soft">Keep an eye out for a reply from <strong>heartstringsstudiowv@gmail.com</strong>.</p>' +
-    '<p><a href="https://tinyurl.com/heartstringswv">Back to Heartstrings Studio</a></p>' +
+    '<p><a href="https://heartstringsstudio.github.io/heartstringsstudio/">Back to Heartstrings Studio</a></p>' +
     '</div>';
 }
 
@@ -947,5 +947,33 @@ function legacyCopy(text) {
    Boot
    ========================================================================= */
 
+function applyOccasionFromUrl() {
+  if (state.screen !== 'welcome' && state.screen !== 'occasion') return;
+  var raw;
+  try { raw = new URLSearchParams(window.location.search).get('occasion'); }
+  catch (e) { return; }
+  if (!raw) return;
+
+  var key = raw.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+  var map = {
+    'wedding': 'wedding',
+    'anniversary': 'wedding',
+    'memorial': 'memorial',
+    'memorial tribute': 'memorial',
+    'celebration of life': 'celebration',
+    'birthday': 'milestone',
+    'retirement': 'milestone',
+    'graduation': 'milestone',
+    'military tribute': 'tribute',
+    'gratitude thank you': 'tribute',
+    'just because': 'justbecause'
+  };
+  if (!map[key]) return;
+  state.occasion = map[key];
+  state.idx = 0;
+  state.screen = 'question';
+}
+
 loadState();
+applyOccasionFromUrl();
 render();
