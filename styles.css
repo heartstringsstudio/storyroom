@@ -4,19 +4,21 @@
    ========================================================================== */
 
 :root {
-  --rose: #b34760;
-  --rose-deep: #8f3049;
-  --blush: #e9b8b3;
-  --gold: #b8862e;
-  --gold-soft: #e8cf9d;
-  --cream: #fbf6ee;
+  --rose: #c0455a;
+  --rose-deep: #8b2a3a;
+  --blush: #f2ccd4;
+  --gold: #b8956a;
+  --gold-soft: #e8d8c4;
+  --cream: #faf6f2;
+  --cream-warm: #f4ede6;
   --card: #fffdf9;
-  --ink: #3f3531;
-  --ink-soft: #6b5d55;
-  --line: #e8d9cb;
-  --grad: linear-gradient(120deg, #b34760 0%, #d98a86 52%, #c99a3f 100%);
-  --shadow: 0 1px 2px rgba(63, 53, 49, 0.06), 0 8px 28px rgba(63, 53, 49, 0.08);
-  --radius: 14px;
+  --ink: #3a2e30;
+  --ink-soft: #7a6668;
+  --line: #e8dde0;
+  --charcoal: #1a1416;
+  --grad: linear-gradient(120deg, #8b2a3a 0%, #c0455a 55%, #b8956a 100%);
+  --shadow: 0 2px 12px rgba(58, 46, 48, 0.05), 0 12px 32px rgba(58, 46, 48, 0.08);
+  --radius: 10px;
   --ease: cubic-bezier(0.25, 0.6, 0.3, 1);
 }
 
@@ -26,9 +28,11 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--cream);
+  background:
+    radial-gradient(circle at 50% -10%, rgba(192,69,90,0.08), transparent 34rem),
+    var(--cream);
   color: var(--ink);
-  font-family: "Nunito Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: "Lato", "Segoe UI", system-ui, -apple-system, sans-serif;
   font-size: 1.0625rem;
   line-height: 1.65;
 }
@@ -44,15 +48,22 @@ body {
 
 .site-header {
   text-align: center;
-  padding: 1.75rem 1rem 0.25rem;
+  padding: 1.6rem 1rem 0.25rem;
+}
+
+.brand-mark {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 0.45rem;
+  object-fit: contain;
 }
 
 .site-header::after {
   content: "";
   display: block;
-  width: 3.25rem;
-  height: 3px;
-  border-radius: 3px;
+  width: 3.75rem;
+  height: 1px;
   margin: 0.9rem auto 0;
   background: var(--grad);
 }
@@ -126,7 +137,7 @@ a { color: var(--rose-deep); }
   color: #fff;
   background: var(--rose-deep);
   border: none;
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 0.85rem 2.1rem;
   cursor: pointer;
   min-height: 48px;
@@ -143,7 +154,7 @@ a { color: var(--rose-deep); }
   color: var(--ink-soft);
   background: none;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 0.85rem 1.6rem;
   cursor: pointer;
   min-height: 48px;
@@ -173,7 +184,7 @@ a { color: var(--rose-deep); }
   border-radius: 4px;
 }
 
-.btn:focus-visible, .btn-quiet:focus-visible { border-radius: 999px; }
+.btn:focus-visible, .btn-quiet:focus-visible { border-radius: 6px; }
 
 .nav-row {
   display: flex;
@@ -198,6 +209,20 @@ a { color: var(--rose-deep); }
   max-width: 28rem;
   margin: 0 auto 1.75rem;
   color: var(--ink-soft);
+}
+
+.welcome .offer-note {
+  display: block;
+  width: fit-content;
+  margin: -0.55rem auto 1.6rem;
+  padding: 0.55rem 0.85rem;
+  border-top: 1px solid var(--gold-soft);
+  border-bottom: 1px solid var(--gold-soft);
+  color: var(--rose-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* --- Occasion cards ------------------------------------------------------ */
@@ -271,7 +296,17 @@ a { color: var(--rose-deep); }
   display: flex;
   justify-content: center;
   gap: 0.5rem;
-  margin: 0.5rem 0 2rem;
+  margin: 0.5rem 0 0.45rem;
+}
+
+.progress-copy {
+  margin: 0 0 1.75rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .dot {
@@ -329,7 +364,17 @@ textarea {
 textarea:focus, input:focus {
   outline: none;
   border-color: var(--rose);
-  box-shadow: 0 0 0 3px rgba(179, 71, 96, 0.14);
+  box-shadow: 0 0 0 3px rgba(192, 69, 90, 0.14);
+}
+
+.privacy-brief {
+  margin: 1rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 2px solid var(--gold);
+  background: var(--cream-warm);
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  line-height: 1.55;
 }
 
 label {
