@@ -44,9 +44,9 @@ var OCCASIONS = {
     label: 'Memorial',
     desc: 'Honoring the memory of someone who has passed',
     icon: 'candle',
-    presend: 'We’ll read every word with care and reply within a day. Most songs are delivered within 48–72 hours.',
+    presend: 'We’ll read every word with care, and we’ll make sure the song is ready when your family needs it.',
     doneTitle: 'Your story is in careful hands.',
-    doneBody: 'Thank you for trusting us with them. We’ll read every word with care and reply within a day with the next steps.',
+    doneBody: 'Thank you for trusting us with them. We’ll read every word, and we’ll make sure the song is with you when your family needs it — that part is ours to carry now.',
     questions: [
       {
         id: 'about',
@@ -97,7 +97,7 @@ var OCCASIONS = {
         id: 'event',
         label: 'SERVICE OR GATHERING',
         q: 'Is there a service or gathering this song is for?',
-        sub: 'If so, tell us when. Standard delivery is 48–72 hours, and rush delivery is available when the date is closer.',
+        sub: 'If so, tell us when, and we’ll make sure the song is ready in time. That worry is off your list.',
         isEvent: true
       },
       {
@@ -113,9 +113,9 @@ var OCCASIONS = {
     label: 'Celebration of Life',
     desc: 'A joyful remembering of a life well lived',
     icon: 'sun',
-    presend: 'We’ll read every word with care and reply within a day.',
+    presend: 'We’ll read every word with care, and we’ll be in touch soon.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you for sharing a life worth celebrating. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you for sharing a life worth celebrating. We’ll read every word with care, and we’ll be in touch soon.',
     questions: [
       {
         id: 'about',
@@ -182,9 +182,9 @@ var OCCASIONS = {
     label: 'Wedding & Anniversary',
     desc: 'A love story, told the way only a song can',
     icon: 'rings',
-    presend: 'We’ll read every word with care and reply within a day.',
+    presend: 'We’ll read every word with care, and we’ll be in touch soon.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you — love stories are our favorite kind of homework. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you — love stories are our favorite kind of homework. We’ll read every word with care, and we’ll be in touch soon.',
     questions: [
       {
         id: 'about',
@@ -250,9 +250,9 @@ var OCCASIONS = {
     label: 'Milestone',
     desc: 'Birthdays, retirements, graduations and more',
     icon: 'flag',
-    presend: 'We’ll read every word with care and reply within a day.',
+    presend: 'We’ll read every word with care, and we’ll be in touch soon.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you — somebody’s big day just got bigger. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you — somebody’s big day just got bigger. We’ll read every word with care, and we’ll be in touch soon.',
     questions: [
       {
         id: 'about',
@@ -318,9 +318,9 @@ var OCCASIONS = {
     label: 'Tribute',
     desc: 'For someone still here who deserves to hear it',
     icon: 'laurel',
-    presend: 'We’ll read every word with care and reply within a day.',
+    presend: 'We’ll read every word with care, and we’ll be in touch soon.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you. The best time to tell somebody what they mean is while they can still hear it — and you just did. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you. The best time to tell somebody what they mean is while they can still hear it — and you just did. We’ll read every word with care, and we’ll be in touch soon.',
     questions: [
       {
         id: 'about',
@@ -386,9 +386,9 @@ var OCCASIONS = {
     label: 'Just Because / Other',
     desc: 'No occasion needed — every story fits here',
     icon: 'note',
-    presend: 'We’ll read every word with care and reply within a day.',
+    presend: 'We’ll read every word with care, and we’ll be in touch soon.',
     doneTitle: 'Your story made it safely.',
-    doneBody: 'Thank you — the best songs often arrive for no occasion at all. We’ll read every word with care and reply within a day.',
+    doneBody: 'Thank you — the best songs often arrive for no occasion at all. We’ll read every word with care, and we’ll be in touch soon.',
     questions: [
       {
         id: 'about',
@@ -542,9 +542,11 @@ function renderWelcome() {
   return '' +
     '<div class="welcome">' +
     '<h1>Every song starts with a story.<br>Tell us yours.</h1>' +
-    '<p>No forms to fight with — just a few gentle questions, one at a time. ' +
-    'Your answers go directly to Tim, who writes every Heartstrings song personally in Lumberport, West Virginia.</p>' +
-    '<span class="offer-note">$150 flat · 48–72 hours · one lyric revision</span>' +
+    '<p>No forms to fight with — just a few gentle questions, one at a time, ' +
+    'asked the way a friend would ask them. Your answers go directly to Tim, who writes ' +
+    'every Heartstrings song personally in Lumberport, West Virginia. Take all the time ' +
+    'you need. Nothing you share here is too small, and you can’t do this wrong.</p>' +
+    '<span class="offer-note">Written by hand · One story at a time</span>' +
     '<button class="btn" data-action="begin">Share your story</button>' +
     '</div>';
 }
@@ -560,8 +562,9 @@ function renderOccasion() {
       '</button></li>';
   }).join('');
   return '' +
-    '<h1>What brings you here?</h1>' +
-    '<p class="soft">This helps us ask the right questions, in the right spirit.</p>' +
+    '<h1>What brings you here today?</h1>' +
+    '<p class="soft">Whatever it is, you’re in the right place. This just helps us ask the ' +
+    'right questions, in the right spirit.</p>' +
     '<ul class="cards">' + cards + '</ul>' +
     '<div class="nav-row"><button class="link-btn" data-action="back-welcome">back</button></div>';
 }
@@ -616,7 +619,7 @@ function renderContact() {
   return '' +
     dotsHtml() +
     '<h2 id="question-heading">One last thing — where can we reach you?</h2>' +
-    '<p class="sub-prompt">So we can send word when your song is ready to begin.</p>' +
+    '<p class="sub-prompt">Just so we can send word once your story is safely with us.</p>' +
     '<label for="c-name">Your name</label>' +
     '<input type="text" id="c-name" autocomplete="name" value="' + esc(state.contact.name) + '">' +
     '<label for="c-email">Email</label>' +
@@ -656,7 +659,7 @@ function renderReview() {
     (state.contact.heard ? '\nHeard about us: ' + esc(state.contact.heard) : '') + '</p>' +
     '</section>';
 
-  var pricing = 'Every song is $150 flat and includes one lyric revision, a personal keepsake page, MP3, lyric sheet, and custom album art. Commercial licensing is $100; rush delivery is $50 when needed.';
+  var nextStep = 'There’s nothing to pay and nothing to decide here. Once we’ve read your story, we’ll reach out personally with the next steps and answer anything you’d like to ask.';
 
   var errorBox = state.sendError
     ? '<div class="error-box" role="alert">' +
@@ -668,11 +671,12 @@ function renderReview() {
 
   return '' +
     '<h2>Here’s your story, just as you told it.</h2>' +
-    '<p class="soft">Read it over if you like — or don’t. It’s already just right.</p>' +
+    '<p class="soft">Read it over if you like — or don’t. It’s already enough, ' +
+    'exactly the way you said it.</p>' +
     sections +
     errorBox +
     '<p class="presend">' + esc(occ.presend) + '</p>' +
-    '<p class="pricing">' + esc(pricing) + '</p>' +
+    '<p class="next-step">' + esc(nextStep) + '</p>' +
     '<p class="privacy-brief">Your story is sent securely to Heartstrings Studio through Formspree and is used only to create and discuss your custom song.</p>' +
     '<div class="nav-row">' +
     '<button class="btn-quiet" data-action="back">Back</button>' +
@@ -690,7 +694,8 @@ function renderDone() {
     '<svg class="heart-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.3C.3 8.6 2 5 5.5 5c2 0 3.4 1.1 4.2 2.3L12 10l2.3-2.7C15.1 6.1 16.5 5 18.5 5 22 5 23.7 8.6 22 11.7 19.5 16.1 12 21 12 21z"/></svg>' +
     '<h1>' + esc(occ.doneTitle) + '</h1>' +
     '<p class="soft">' + esc(occ.doneBody) + '</p>' +
-    '<p class="soft">Keep an eye out for a reply from <strong>heartstringsstudiowv@gmail.com</strong>.</p>' +
+    '<p class="soft">Watch for a note from <strong>heartstringsstudiowv@gmail.com</strong> — ' +
+    'it’ll come from a real person, not a robot.</p>' +
     '<p><a href="https://heartstringsstudio.github.io/heartstringsstudio/">Back to Heartstrings Studio</a></p>' +
     '</div>';
 }
