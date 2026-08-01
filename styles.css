@@ -430,7 +430,7 @@ label .optional {
   color: var(--ink-soft);
 }
 
-.pricing {
+.next-step {
   font-size: 0.92rem;
   color: var(--ink-soft);
   margin-bottom: 1.25rem;

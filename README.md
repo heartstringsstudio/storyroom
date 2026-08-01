@@ -42,7 +42,7 @@ copy live on the same occasion entries (`presend`, `doneTitle`, `doneBody`).
 
 ## Manual test checklist
 
-1. **Memorial end-to-end:** pick Memorial, answer every question, review, send — confirm the email arrives with the full `STORY ROOM INTAKE — Memorial` block and the standard $150 / 48–72 hour offer is shown accurately.
+1. **Memorial end-to-end:** pick Memorial, answer every question, review, send — confirm the email arrives with the full `STORY ROOM INTAKE — Memorial` block, and that no price or turnaround-time promise appears anywhere on the page.
 2. **Refresh mid-interview:** answer three questions, reload the page — you should land back on the same question with every answer intact.
 3. **Skip behavior:** skip two non-essential questions — review shows them as *(skipped)* and the email lists them under `SKIPPED QUESTIONS`.
 4. **Failed-submit recovery:** go offline (or block formspree.io), press *Send my story* — answers stay intact, the retry message appears, and *Copy my story* puts the full compiled text on the clipboard.
