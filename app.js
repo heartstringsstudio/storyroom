@@ -545,6 +545,8 @@ function renderWelcome() {
     '<p>No forms to fight with — just a few gentle questions, one at a time. ' +
     'Take all the time you need. You can’t do this wrong.</p>' +
     '<button class="btn" data-action="begin">Begin</button>' +
+    '<p class="welcome-price">One song, one price — a flat $150, delivered in 48–72 hours.<br>' +
+    'Memorial songs arrive within 24 hours, at no extra cost.</p>' +
     '</div>';
 }
 
@@ -691,7 +693,7 @@ function renderDone() {
     '<h1>' + esc(occ.doneTitle) + '</h1>' +
     '<p class="soft">' + esc(occ.doneBody) + '</p>' +
     '<p class="soft">Keep an eye out for a reply from <strong>heartstringsstudiowv@gmail.com</strong>.</p>' +
-    '<p><a href="https://tinyurl.com/heartstringswv">Back to Heartstrings Studio</a></p>' +
+    '<p><a href="https://heartstringsstudio.github.io/heartstringsstudio/">Back to Heartstrings Studio</a></p>' +
     '</div>';
 }
 
@@ -910,6 +912,13 @@ function send() {
     state.sendError = false;
     state.screen = 'done';
     clearState(); // their story arrived; nothing sensitive left behind
+    /* The one conversion event this page has — the story actually arriving. */
+    if (typeof gtag === 'function') {
+      gtag('event', 'story_sent', {
+        event_category: 'conversion',
+        occasion: occ.label
+      });
+    }
     render();
   }).catch(function () {
     state.sendError = true;
@@ -947,5 +956,58 @@ function legacyCopy(text) {
    Boot
    ========================================================================= */
 
+/*
+ * Deep links: the main site's occasion pills arrive as /?occasion=…
+ * We accept our own keys ("memorial") and the pill labels the site has
+ * always sent ("Memorial / Tribute", "Birthday", …), and open straight
+ * onto that path's first question — skipping the welcome and picker
+ * screens the visitor has effectively already answered.
+ */
+function occasionFromURL() {
+  var raw = null;
+  try {
+    var match = /[?&]occasion=([^&]*)/.exec(window.location.search);
+    if (match) raw = decodeURIComponent(match[1].replace(/\+/g, ' '));
+  } catch (e) { return null; }
+  if (!raw) return null;
+  var v = raw.trim().toLowerCase();
+  if (OCCASIONS[v]) return v;
+  var MAP = {
+    'wedding': 'wedding',
+    'weddings': 'wedding',
+    'anniversary': 'wedding',
+    'anniversaries': 'wedding',
+    'memorial / tribute': 'memorial',
+    'memorial': 'memorial',
+    'memorials & tributes': 'memorial',
+    'funeral': 'memorial',
+    'celebration of life': 'celebration',
+    'celebrations of life': 'celebration',
+    'birthday': 'milestone',
+    'birthdays': 'milestone',
+    'retirement': 'milestone',
+    'retirements': 'milestone',
+    'graduation': 'milestone',
+    'military tribute': 'tribute',
+    'military tributes': 'tribute',
+    'gratitude / thank you': 'tribute',
+    'gratitude & thank you': 'tribute',
+    'just because': 'tribute',
+    'holiday': 'holiday',
+    'holidays': 'holiday'
+  };
+  return MAP[v] || null;
+}
+
 loadState();
+(function () {
+  var fromURL = occasionFromURL();
+  /* Only jump when nothing is already in progress — a returning visitor's
+     half-told story always wins over the link they happened to click. */
+  if (fromURL && state.screen === 'welcome') {
+    state.occasion = fromURL;
+    state.screen = 'question';
+    state.idx = 0;
+  }
+})();
 render();

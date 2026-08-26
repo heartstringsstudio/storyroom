@@ -200,6 +200,12 @@ a { color: var(--rose-deep); }
   color: var(--ink-soft);
 }
 
+.welcome .welcome-price {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 1.5rem auto 0;
+}
+
 /* --- Occasion cards ------------------------------------------------------ */
 
 .cards {
