@@ -915,6 +915,13 @@ function send() {
     state.sendError = false;
     state.screen = 'done';
     clearState(); // their story arrived; nothing sensitive left behind
+    /* The one conversion event this page has — the story actually arriving. */
+    if (typeof gtag === 'function') {
+      gtag('event', 'story_sent', {
+        event_category: 'conversion',
+        occasion: occ.label
+      });
+    }
     render();
   }).catch(function () {
     state.sendError = true;
