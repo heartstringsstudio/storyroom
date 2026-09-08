@@ -9,8 +9,21 @@ frameworks, no backend.
 | File | What it is |
 |---|---|
 | `index.html` | Page shell, fonts, and the commented-out GA4 placeholder |
-| `styles.css` | All styling (rose → blush → soft gold palette, mobile-first) |
+| `styles.css` | All styling (walnut → amber palette, mobile-first) |
 | `app.js` | Question config, flow logic, and Formspree submission |
+
+## Keeping the look in step with the main site
+
+The Story Room borrows the main site's design system rather than defining its own:
+walnut `#774826`, amber `#f0b86f`, cream ground `#f4e8d2`, Libre Caslon Display over
+DM Sans, 3px corners and hard offset shadows.
+
+It deliberately uses the *quiet* half of that system — no photo hero, no dark
+full-bleed sections, no display type above 2.4rem. People arrive here mid-grief as
+often as mid-celebration, and the page has to stay calm.
+
+All the colour lives in the `:root` block at the top of `styles.css`. If the main site
+is restyled again, this page needs the same pass.
 
 ## Deploying to GitHub Pages
 
