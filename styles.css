@@ -1,24 +1,36 @@
 /* ==========================================================================
    The Story Room — Heartstrings Studio
-   Palette: rose → blush → soft gold on cream. Mobile-first.
+   Palette: walnut → amber on cream — the same system as the main site.
+   Mobile-first.
    ========================================================================== */
 
+/* The walnut/amber system the main site and the jukebox use. Token names are
+   the old rose-era ones so the 400 lines below still read the same; only the
+   values moved. --rose* is now the walnut accent, --gold the warm bronze. */
 :root {
-  --rose: #c0455a;
-  --rose-deep: #8b2a3a;
-  --blush: #f2ccd4;
-  --gold: #b8956a;
-  --gold-soft: #e8d8c4;
-  --cream: #faf6f2;
-  --cream-warm: #f4ede6;
-  --card: #fffdf9;
-  --ink: #3a2e30;
-  --ink-soft: #7a6668;
-  --line: #e8dde0;
-  --charcoal: #1a1416;
-  --grad: linear-gradient(120deg, #8b2a3a 0%, #c0455a 55%, #b8956a 100%);
-  --shadow: 0 2px 12px rgba(58, 46, 48, 0.05), 0 12px 32px rgba(58, 46, 48, 0.08);
-  --radius: 10px;
+  --rose: #774826;          /* primary walnut */
+  --rose-deep: #5a3419;     /* deep walnut, accent text */
+  --blush: #ebd3ae;         /* pale amber-cream */
+  --gold: #a17c52;          /* bronze */
+  --gold-soft: #e0cfae;
+  --cream: #f4e8d2;         /* page ground */
+  --cream-warm: #faf1de;
+  --card: #fffaf0;          /* card / input surface */
+  --ink: #3f3227;
+  --ink-soft: #7d6a55;
+  --line: #e0cfae;
+  --charcoal: #271c16;      /* walnut ground */
+
+  --amber: #edb268;
+  --amber-shadow: #956536;
+  --amber-ink: #291c14;
+
+  --serif: "Libre Caslon Display", Georgia, serif;
+  --serif-alt: Georgia, serif;
+  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --grad: linear-gradient(120deg, #5a3419 0%, #774826 55%, #edb268 100%);
+  --radius: 3px;
   --ease: cubic-bezier(0.25, 0.6, 0.3, 1);
 }
 
@@ -29,10 +41,10 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 50% -10%, rgba(192,69,90,0.08), transparent 34rem),
+    radial-gradient(circle at 50% -10%, rgba(119,72,38,0.07), transparent 34rem),
     var(--cream);
   color: var(--ink);
-  font-family: "Lato", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-family: var(--sans);
   font-size: 1.0625rem;
   line-height: 1.65;
 }
@@ -69,10 +81,10 @@ body {
 }
 
 .wordmark {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
+  font-family: var(--serif);
+  font-weight: 400;   /* Libre Caslon Display ships 400 only — 600 renders as faux-bold */
   font-size: 1.65rem;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   margin: 0;
   color: var(--rose-deep);
 }
@@ -106,9 +118,10 @@ body {
 }
 
 h1, h2 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-weight: 600;
-  line-height: 1.25;
+  font-family: var(--serif);
+  font-weight: 400;   /* the only weight the face ships */
+  letter-spacing: -0.03em;
+  line-height: 1.15;
   color: var(--ink);
   margin: 0 0 0.75rem;
 }
@@ -130,22 +143,31 @@ a { color: var(--rose-deep); }
 
 /* --- Buttons ------------------------------------------------------------ */
 
+/* The main site's amber slab: a hard offset instead of a blur, lifting on hover. */
 .btn {
   display: inline-block;
   font: inherit;
   font-weight: 700;
-  color: #fff;
-  background: var(--rose-deep);
+  color: var(--amber-ink);
+  background: var(--amber);
   border: none;
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 0.85rem 2.1rem;
   cursor: pointer;
   min-height: 48px;
-  transition: background 200ms var(--ease), transform 200ms var(--ease);
+  box-shadow: 0 5px 0 var(--amber-shadow);
+  transition: transform 250ms var(--ease), box-shadow 250ms var(--ease);
 }
 
-.btn:hover { background: var(--rose); }
-.btn:active { transform: scale(0.98); }
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 var(--amber-shadow), 0 14px 20px rgba(63, 50, 39, 0.18);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 0 var(--amber-shadow);
+}
 
 .btn-quiet {
   display: inline-block;
@@ -154,7 +176,7 @@ a { color: var(--rose-deep); }
   color: var(--ink-soft);
   background: none;
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 3px;
   padding: 0.85rem 1.6rem;
   cursor: pointer;
   min-height: 48px;
@@ -178,13 +200,23 @@ a { color: var(--rose-deep); }
 
 .link-btn:hover { color: var(--rose-deep); }
 
+/* Walnut, not the system's amber: amber on this cream ground is nowhere near
+   enough contrast for a focus indicator. Offset stays tight so the ring doesn't
+   collide with the next stacked field. */
 :focus-visible {
-  outline: 2.5px solid var(--rose-deep);
+  outline: 3px solid var(--rose);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
-.btn:focus-visible, .btn-quiet:focus-visible { border-radius: 6px; }
+.btn:focus-visible, .btn-quiet:focus-visible { border-radius: 3px; }
+
+/* app.js moves screen-reader focus to each new screen's heading via
+   tabindex="-1". Those headings aren't in the tab order, so the ring is noise
+   rather than way-finding — and a box drawn round the question on every screen
+   change reads as an error state on a page that has to stay calm. */
+h1[tabindex="-1"]:focus-visible,
+h2[tabindex="-1"]:focus-visible { outline: none; }
 
 .nav-row {
   display: flex;
@@ -256,13 +288,18 @@ a { color: var(--rose-deep); }
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  box-shadow: 4px 5px 0 var(--gold-soft);
   padding: 1.05rem 1.1rem;
   cursor: pointer;
-  transition: transform 250ms var(--ease), border-color 250ms var(--ease);
+  transition: transform 250ms var(--ease), border-color 250ms var(--ease),
+              box-shadow 250ms var(--ease);
 }
 
-.card:hover { transform: translateY(-2px); border-color: var(--blush); }
+.card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 6px 8px 0 var(--gold-soft);
+}
 
 .card svg {
   flex: none;
@@ -278,10 +315,8 @@ a { color: var(--rose-deep); }
 
 .card strong {
   display: block;
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.3rem;
-  font-weight: 600;
-  line-height: 1.3;
+  font: 1.3rem/1.3 var(--serif-alt);   /* Georgia at h3 scale, as the main site does */
+  font-weight: 400;
 }
 
 .card span {
@@ -364,7 +399,7 @@ textarea {
 textarea:focus, input:focus {
   outline: none;
   border-color: var(--rose);
-  box-shadow: 0 0 0 3px rgba(192, 69, 90, 0.14);
+  box-shadow: 0 0 0 3px rgba(119, 72, 38, 0.16);
 }
 
 .privacy-brief {
@@ -406,9 +441,8 @@ label .optional {
 }
 
 .review-section h3 {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font: 1.25rem/1.3 var(--serif-alt);
+  font-weight: 400;
   margin: 0 0 0.3rem;
   display: flex;
   align-items: baseline;
@@ -437,8 +471,8 @@ label .optional {
 }
 
 .error-box {
-  background: #fdf0ec;
-  border: 1px solid #eac3b8;
+  background: #fdf2df;
+  border: 1px solid #e6c9a0;
   border-radius: var(--radius);
   padding: 1rem 1.15rem;
   margin: 1.25rem 0;
