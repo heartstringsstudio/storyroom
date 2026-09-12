@@ -11,6 +11,7 @@ frameworks, no backend.
 | `index.html` | Page shell, fonts, and the commented-out GA4 placeholder |
 | `styles.css` | All styling (walnut → amber palette, mobile-first) |
 | `app.js` | Question config, flow logic, and Formspree submission |
+| `logo.png` | The studio mark (512px), used as the header mark, favicon and apple-touch icon |
 
 ## Keeping the look in step with the main site
 
@@ -25,9 +26,17 @@ often as mid-celebration, and the page has to stay calm.
 All the colour lives in the `:root` block at the top of `styles.css`. If the main site
 is restyled again, this page needs the same pass.
 
+`logo.png` is the same studio mark the main site ships. The master is
+`heartstrings-mark-MASTER-1254.png` in the studio's Drive (Misc Graphics) — a 1254×1254
+transparent PNG. Cut new sizes from the master, not from this file: trim to the alpha ≥ 12
+bounding box, then scale so the mark fills ~54% of the canvas width, centred. The main
+site frames it identically, so a looser or tighter crop here would visibly mismatch it.
+When the file is swapped, bump the `?v=` on all three `logo.png` URLs in `index.html` in
+the same commit — returning visitors cache those exact URLs.
+
 ## Deploying to GitHub Pages
 
-1. Push these three files (plus this README) to the repository's default branch.
+1. Push these four files (plus this README) to the repository's default branch.
 2. In the repo: **Settings → Pages → Source**, choose **Deploy from a branch**,
    pick the default branch and the `/ (root)` folder, and save.
 3. The site goes live at `https://<account>.github.io/<repo>/` within a minute or two.
