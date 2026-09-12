@@ -12,6 +12,7 @@ frameworks, no backend.
 | `styles.css` | All styling (walnut → amber palette, mobile-first) |
 | `app.js` | Question config, flow logic, and Formspree submission |
 | `logo.png` | The studio mark (512px), used as the header mark, favicon and apple-touch icon |
+| `share-card.jpg` | The 1200×630 Open Graph card a shared Story Room link renders |
 
 ## Keeping the look in step with the main site
 
@@ -34,9 +35,15 @@ site frames it identically, so a looser or tighter crop here would visibly misma
 When the file is swapped, bump the `?v=` on all three `logo.png` URLs in `index.html` in
 the same commit — returning visitors cache those exact URLs.
 
+`share-card.jpg` carries the same mark and has to be rebuilt from the master alongside it,
+or a shared link keeps rendering the old brand long after the page itself is updated. It
+deliberately lives here rather than reusing the main site's `banner.jpeg`, which is still
+on the retired rose mark. Bump its `?v=` too: Facebook and iMessage cache a share card by
+URL and will happily serve a year-old one.
+
 ## Deploying to GitHub Pages
 
-1. Push these four files (plus this README) to the repository's default branch.
+1. Push these five files (plus this README) to the repository's default branch.
 2. In the repo: **Settings → Pages → Source**, choose **Deploy from a branch**,
    pick the default branch and the `/ (root)` folder, and save.
 3. The site goes live at `https://<account>.github.io/<repo>/` within a minute or two.
