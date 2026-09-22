@@ -1,25 +1,25 @@
 /* ==========================================================================
    The Story Room — Heartstrings Studio
-   Palette: walnut → amber on cream — the same system as the main site.
-   Mobile-first.
+   Palette: amber on the main site's dark walnut shell. Mobile-first.
    ========================================================================== */
 
-/* The walnut/amber system the main site and the jukebox use. Token names are
-   the old rose-era ones so the 400 lines below still read the same; only the
-   values moved. --rose* is now the walnut accent, --gold the warm bronze. */
+/* The main site's dark shell (style.css :root on heartstringsstudio): walnut
+   ground, cream ink, amber accent. Token names are the old rose-era ones so the
+   rules below still read the same; only the values moved. --rose* is now the
+   amber accent, --cream the page ground, --card the raised panel. */
 :root {
-  --rose: #774826;          /* primary walnut */
-  --rose-deep: #5a3419;     /* deep walnut, accent text */
-  --blush: #ebd3ae;         /* pale amber-cream */
-  --gold: #a17c52;          /* bronze */
-  --gold-soft: #e0cfae;
-  --cream: #f4e8d2;         /* page ground */
-  --cream-warm: #faf1de;
-  --card: #fffaf0;          /* card / input surface */
-  --ink: #3f3227;
-  --ink-soft: #7d6a55;
-  --line: #e0cfae;
-  --charcoal: #271c16;      /* walnut ground */
+  --rose: #f0b86f;          /* amber accent (main site --accent) */
+  --rose-deep: #f2c98e;     /* pale amber, accent text and links */
+  --blush: #8a6446;         /* answered-question dot */
+  --gold: #af8050;          /* bronze edge */
+  --gold-soft: #1a120d;     /* hard offset shadow under cards */
+  --cream: #271c16;         /* page ground (main site --bg) */
+  --cream-warm: #31241b;    /* recessed note */
+  --card: #382920;          /* card / input surface (main site --panel) */
+  --ink: #fff1dc;
+  --ink-soft: #d6bfa6;      /* main site --muted */
+  --line: #e3b78640;
+  --charcoal: #1b120f;      /* deepest walnut, header shade */
 
   --amber: #edb268;
   --amber-shadow: #956536;
@@ -29,7 +29,7 @@
   --serif-alt: Georgia, serif;
   --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
-  --grad: linear-gradient(120deg, #5a3419 0%, #774826 55%, #edb268 100%);
+  --grad: linear-gradient(120deg, #956536 0%, #c98f4f 55%, #f0b86f 100%);
   --radius: 3px;
   --ease: cubic-bezier(0.25, 0.6, 0.3, 1);
 }
@@ -41,7 +41,7 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 50% -10%, rgba(119,72,38,0.07), transparent 34rem),
+    radial-gradient(circle at 50% -10%, rgba(240,184,111,0.08), transparent 34rem),
     var(--cream);
   color: var(--ink);
   font-family: var(--sans);
@@ -61,14 +61,39 @@ body {
 .site-header {
   text-align: center;
   padding: 1.6rem 1rem 0.25rem;
+  background: linear-gradient(#1b120fd9, transparent);
 }
 
-.brand-mark {
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 0.45rem;
+/* The main site's header lockup: mark beside a tracked caps name. logo.png
+   frames the mark at ~54% of its canvas, so 64px here draws it at the same
+   visual size as the main site's 46px header slot once the padding is counted. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.brand img {
+  width: 64px;
+  height: 64px;
+  margin: -8px -4px;
   object-fit: contain;
+}
+
+.brand small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  letter-spacing: 0.13em;
+  color: #e2c7a8;
 }
 
 .site-header::after {
@@ -80,22 +105,13 @@ body {
   background: var(--grad);
 }
 
-.wordmark {
-  font-family: var(--serif);
-  font-weight: 400;   /* Libre Caslon Display ships 400 only — 600 renders as faux-bold */
-  font-size: 1.65rem;
-  letter-spacing: 0.04em;
-  margin: 0;
-  color: var(--rose-deep);
-}
-
 .room-name {
-  margin: 0.1rem 0 0;
-  font-size: 0.8rem;
+  margin: 1.1rem 0 0;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.17em;
   text-transform: uppercase;
-  color: var(--ink-soft);
+  color: var(--rose);   /* the main site's amber eyebrow */
 }
 
 /* --- Layout ------------------------------------------------------------- */
@@ -127,6 +143,14 @@ h1, h2 {
 }
 
 h1 { font-size: 2.15rem; }
+
+/* The main site's accent word: amber Georgia italic inside a Caslon headline. */
+h1 em, h2 em {
+  color: var(--rose);
+  font-family: var(--serif-alt);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+}
 h2 { font-size: 1.75rem; }
 
 p { margin: 0 0 1rem; }
@@ -155,13 +179,13 @@ a { color: var(--rose-deep); }
   padding: 0.85rem 2.1rem;
   cursor: pointer;
   min-height: 48px;
-  box-shadow: 0 5px 0 var(--amber-shadow);
+  box-shadow: 0 6px 0 var(--amber-shadow), 0 16px 25px #0004;
   transition: transform 250ms var(--ease), box-shadow 250ms var(--ease);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 0 var(--amber-shadow), 0 14px 20px rgba(63, 50, 39, 0.18);
+  box-shadow: 0 9px 0 var(--amber-shadow), 0 20px 28px #0006;
 }
 
 .btn:active {
@@ -200,9 +224,8 @@ a { color: var(--rose-deep); }
 
 .link-btn:hover { color: var(--rose-deep); }
 
-/* Walnut, not the system's amber: amber on this cream ground is nowhere near
-   enough contrast for a focus indicator. Offset stays tight so the ring doesn't
-   collide with the next stacked field. */
+/* Amber, as on the main site — it reads clearly against the walnut ground.
+   Offset stays tight so the ring doesn't collide with the next stacked field. */
 :focus-visible {
   outline: 3px solid var(--rose);
   outline-offset: 2px;
@@ -399,7 +422,7 @@ textarea {
 textarea:focus, input:focus {
   outline: none;
   border-color: var(--rose);
-  box-shadow: 0 0 0 3px rgba(119, 72, 38, 0.16);
+  box-shadow: 0 0 0 3px rgba(240, 184, 111, 0.22);
 }
 
 .privacy-brief {
@@ -471,8 +494,8 @@ label .optional {
 }
 
 .error-box {
-  background: #fdf2df;
-  border: 1px solid #e6c9a0;
+  background: #4b3525;
+  border: 1px solid #af80504d;
   border-radius: var(--radius);
   padding: 1rem 1.15rem;
   margin: 1.25rem 0;
@@ -487,13 +510,11 @@ label .optional {
   padding-top: 2.5rem;
 }
 
-.done-screen .heart-mark {
-  width: 44px;
-  height: 44px;
-  margin-bottom: 1rem;
-  fill: none;
-  stroke: var(--rose);
-  stroke-width: 1.5;
+.done-mark {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: -1rem auto 0.25rem;
 }
 
 /* --- Footer ----------------------------------------------------------------- */

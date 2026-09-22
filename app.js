@@ -541,7 +541,7 @@ function render() {
 function renderWelcome() {
   return '' +
     '<div class="welcome">' +
-    '<h1>Every song starts with a story.<br>Tell us yours.</h1>' +
+    '<h1>Every song starts with a story.<br>Tell us <em>yours</em>.</h1>' +
     '<p>No forms to fight with — just a few gentle questions, one at a time, ' +
     'asked the way a friend would ask them. Your answers go directly to Tim, who writes ' +
     'every Heartstrings song personally in Lumberport, West Virginia. Take all the time ' +
@@ -691,7 +691,7 @@ function renderDone() {
   var occ = OCCASIONS[state.occasion];
   return '' +
     '<div class="done-screen">' +
-    '<svg class="heart-mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.9-10-9.3C.3 8.6 2 5 5.5 5c2 0 3.4 1.1 4.2 2.3L12 10l2.3-2.7C15.1 6.1 16.5 5 18.5 5 22 5 23.7 8.6 22 11.7 19.5 16.1 12 21 12 21z"/></svg>' +
+    '<img class="done-mark" src="logo.png?v=2-newlogo" alt="" width="512" height="512">' +
     '<h1>' + esc(occ.doneTitle) + '</h1>' +
     '<p class="soft">' + esc(occ.doneBody) + '</p>' +
     '<p class="soft">Watch for a note from <strong>heartstringsstudiowv@gmail.com</strong> — ' +
