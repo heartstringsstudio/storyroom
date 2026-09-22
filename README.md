@@ -9,7 +9,7 @@ frameworks, no backend.
 | File | What it is |
 |---|---|
 | `index.html` | Page shell, fonts, and the commented-out GA4 placeholder |
-| `styles.css` | All styling (walnut → amber palette, mobile-first) |
+| `styles.css` | All styling (amber on dark walnut, mobile-first) |
 | `app.js` | Question config, flow logic, and Formspree submission |
 | `logo.png` | The studio mark (512px), used as the header mark, favicon and apple-touch icon |
 | `share-card.jpg` | The 1200×630 Open Graph card a shared Story Room link renders |
@@ -17,12 +17,15 @@ frameworks, no backend.
 ## Keeping the look in step with the main site
 
 The Story Room borrows the main site's design system rather than defining its own:
-walnut `#774826`, amber `#f0b86f`, cream ground `#f4e8d2`, Libre Caslon Display over
-DM Sans, 3px corners and hard offset shadows.
+the same dark walnut shell (`#271c16` ground, `#382920` panels, `#fff1dc` ink,
+`#d6bfa6` muted text), amber `#f0b86f` for eyebrows, focus rings and the one accent
+word in a headline, Libre Caslon Display over DM Sans, 3px corners and hard offset
+shadows. The header is the main site's lockup — mark beside HEARTSTRINGS / STUDIO ·
+WEST VIRGINIA — and links back to it.
 
-It deliberately uses the *quiet* half of that system — no photo hero, no dark
-full-bleed sections, no display type above 2.4rem. People arrive here mid-grief as
-often as mid-celebration, and the page has to stay calm.
+It still uses the *quiet* half of that system — no photo hero, no parallax, no
+display type above 2.4rem. People arrive here mid-grief as often as mid-celebration,
+and the page has to stay calm.
 
 All the colour lives in the `:root` block at the top of `styles.css`. If the main site
 is restyled again, this page needs the same pass.
@@ -35,7 +38,8 @@ site frames it identically, so a looser or tighter crop here would visibly misma
 When the file is swapped, bump the `?v=` on all three `logo.png` URLs in `index.html` in
 the same commit — returning visitors cache those exact URLs.
 
-`share-card.jpg` carries the same mark and has to be rebuilt from the master alongside it,
+`share-card.jpg` carries the same mark on the same dark ground, and has to be rebuilt
+from the master (`tools/build-share-card.py`) whenever either the mark or the palette changes,
 or a shared link keeps rendering the old brand long after the page itself is updated. It
 deliberately lives here rather than reusing the main site's `banner.jpeg`, which is still
 on the retired rose mark. Bump its `?v=` too: Facebook and iMessage cache a share card by
